@@ -12,6 +12,7 @@ export const supportedNetworks = [
     `arbitrumSepolia`,
     `avalancheFuji`,
     `polygonMumbai`,
+    `baseSepolia`,
 ];
 
 export const LINK_ADDRESSES: AddressMap = {
@@ -19,7 +20,8 @@ export const LINK_ADDRESSES: AddressMap = {
     [`polygonMumbai`]: `0x326C977E6efc84E512bB9C30f76E30c160eD06FB`,
     [`optimismSepolia`]: `0xE4aB69C077896252FAFBD49EFD26B5D171A32410`,
     [`arbitrumSepolia`]: `0xb1D4538B4571d411F07960EF2838Ce337FE1E80E`,
-    [`avalancheFuji`]: `0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846`
+    [`avalancheFuji`]: `0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846`,
+    [`baseSepolia`]: `0xE4aB69C077896252FAFBD49EFD26B5D171A32410`
 };
 
 export const routerConfig = {
@@ -47,5 +49,10 @@ export const routerConfig = {
         address: `0x1035cabc275068e0f4b745a29cedf38e13af41b1`,
         chainSelector: `12532609583862916517`,
         feeTokens: [LINK_ADDRESSES[`polygonMumbai`], `0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889`]
+    },
+    baseSepolia: {
+        address: `0xD3b06cEbF099CE7DA4AcCf578aaebFDBd6e88a93`,
+        chainSelector: `10344971235874465080`,
+        feeTokens: [LINK_ADDRESSES[`baseSepolia`], `0x4200000000000000000000000000000000000006`]
     }
 }
