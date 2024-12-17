@@ -6,7 +6,6 @@ import { SourceMinter, SourceMinter__factory } from "../typechain-types";
 import { Spinner } from "../utils/spinner";
 import { LINK_ADDRESSES } from "./constants";
 
-
 task(`deploy-source-minter`, `Deploys SourceMinter.sol smart contract`)
     .addOptionalParam(`router`, `The address of the Router contract on the source blockchain`)
     .setAction(async (taskArguments: TaskArguments, hre: HardhatRuntimeEnvironment) => {

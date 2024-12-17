@@ -27,8 +27,11 @@ export interface SourceMinterInterface extends Interface {
   getFunction(
     nameOrSignature:
       | "acceptOwnership"
+      | "getStakedBalance"
       | "mint"
       | "owner"
+      | "stake"
+      | "stakedBalances"
       | "transferOwnership"
       | "withdraw"
       | "withdrawToken"
@@ -39,6 +42,7 @@ export interface SourceMinterInterface extends Interface {
       | "MessageSent"
       | "OwnershipTransferRequested"
       | "OwnershipTransferred"
+      | "Staked"
   ): EventFragment;
 
   encodeFunctionData(
@@ -46,10 +50,19 @@ export interface SourceMinterInterface extends Interface {
     values?: undefined
   ): string;
   encodeFunctionData(
+    functionFragment: "getStakedBalance",
+    values: [AddressLike]
+  ): string;
+  encodeFunctionData(
     functionFragment: "mint",
     values: [BigNumberish, AddressLike, BigNumberish]
   ): string;
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
+  encodeFunctionData(functionFragment: "stake", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "stakedBalances",
+    values: [AddressLike]
+  ): string;
   encodeFunctionData(
     functionFragment: "transferOwnership",
     values: [AddressLike]
@@ -67,8 +80,17 @@ export interface SourceMinterInterface extends Interface {
     functionFragment: "acceptOwnership",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(
+    functionFragment: "getStakedBalance",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "mint", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "stake", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "stakedBalances",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "transferOwnership",
     data: BytesLike
@@ -111,6 +133,19 @@ export namespace OwnershipTransferredEvent {
   export interface OutputObject {
     from: string;
     to: string;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace StakedEvent {
+  export type InputTuple = [user: AddressLike, amount: BigNumberish];
+  export type OutputTuple = [user: string, amount: bigint];
+  export interface OutputObject {
+    user: string;
+    amount: bigint;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -163,6 +198,8 @@ export interface SourceMinter extends BaseContract {
 
   acceptOwnership: TypedContractMethod<[], [void], "nonpayable">;
 
+  getStakedBalance: TypedContractMethod<[user: AddressLike], [bigint], "view">;
+
   mint: TypedContractMethod<
     [
       destinationChainSelector: BigNumberish,
@@ -174,6 +211,10 @@ export interface SourceMinter extends BaseContract {
   >;
 
   owner: TypedContractMethod<[], [string], "view">;
+
+  stake: TypedContractMethod<[], [void], "payable">;
+
+  stakedBalances: TypedContractMethod<[arg0: AddressLike], [bigint], "view">;
 
   transferOwnership: TypedContractMethod<
     [to: AddressLike],
@@ -201,6 +242,9 @@ export interface SourceMinter extends BaseContract {
     nameOrSignature: "acceptOwnership"
   ): TypedContractMethod<[], [void], "nonpayable">;
   getFunction(
+    nameOrSignature: "getStakedBalance"
+  ): TypedContractMethod<[user: AddressLike], [bigint], "view">;
+  getFunction(
     nameOrSignature: "mint"
   ): TypedContractMethod<
     [
@@ -214,6 +258,12 @@ export interface SourceMinter extends BaseContract {
   getFunction(
     nameOrSignature: "owner"
   ): TypedContractMethod<[], [string], "view">;
+  getFunction(
+    nameOrSignature: "stake"
+  ): TypedContractMethod<[], [void], "payable">;
+  getFunction(
+    nameOrSignature: "stakedBalances"
+  ): TypedContractMethod<[arg0: AddressLike], [bigint], "view">;
   getFunction(
     nameOrSignature: "transferOwnership"
   ): TypedContractMethod<[to: AddressLike], [void], "nonpayable">;
@@ -249,6 +299,13 @@ export interface SourceMinter extends BaseContract {
     OwnershipTransferredEvent.OutputTuple,
     OwnershipTransferredEvent.OutputObject
   >;
+  getEvent(
+    key: "Staked"
+  ): TypedContractEvent<
+    StakedEvent.InputTuple,
+    StakedEvent.OutputTuple,
+    StakedEvent.OutputObject
+  >;
 
   filters: {
     "MessageSent(bytes32)": TypedContractEvent<
@@ -282,6 +339,17 @@ export interface SourceMinter extends BaseContract {
       OwnershipTransferredEvent.InputTuple,
       OwnershipTransferredEvent.OutputTuple,
       OwnershipTransferredEvent.OutputObject
+    >;
+
+    "Staked(address,uint256)": TypedContractEvent<
+      StakedEvent.InputTuple,
+      StakedEvent.OutputTuple,
+      StakedEvent.OutputObject
+    >;
+    Staked: TypedContractEvent<
+      StakedEvent.InputTuple,
+      StakedEvent.OutputTuple,
+      StakedEvent.OutputObject
     >;
   };
 }

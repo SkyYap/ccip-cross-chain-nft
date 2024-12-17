@@ -30,7 +30,10 @@ task(`fill-sender`, `Transfers the provided amount of LINK token or native coin 
             console.log(`ℹ️  Attempting to send ${amount} of ${blockchain} native coins from ${signer.address} to ${senderAddress}`);
             spinner.start();
 
-            const tx = await signer.sendTransaction({ to: senderAddress, value: amount });
+            const tx = await signer.sendTransaction({ 
+                to: senderAddress, 
+                value: ethers.parseEther(amount.toString()) 
+            });
             await tx.wait();
 
             spinner.stop();
@@ -41,7 +44,7 @@ task(`fill-sender`, `Transfers the provided amount of LINK token or native coin 
             console.log(`ℹ️  Attempting to send ${amount} of ${link.target} tokens from ${signer.address} to ${senderAddress}`);
             spinner.start();
 
-            const tx = await link.transfer(senderAddress, amount);
+            const tx = await link.transfer(senderAddress, ethers.parseUnits(amount.toString(), 18));
             await tx.wait();
 
             spinner.stop();

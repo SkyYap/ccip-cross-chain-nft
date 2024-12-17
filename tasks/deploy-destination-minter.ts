@@ -1,5 +1,3 @@
-
-
 import { task } from "hardhat/config";
 import { HardhatRuntimeEnvironment, TaskArguments } from "hardhat/types";
 import { getPrivateKey, getProviderRpcUrl, getRouterConfig } from "./utils";
@@ -24,6 +22,14 @@ task(`deploy-destination-minter`, `Deploys MyNFT.sol and DestinationMinter.sol s
         console.log(`ℹ️  Attempting to deploy MyNFT smart contract on the ${hre.network.name} blockchain using ${deployer.address} address`);
         spinner.start();
 
+        // const feeData = await provider.getFeeData();
+        // const gasPrice = feeData.gasPrice ? feeData.gasPrice * BigInt(2) : ethers.utils.parseUnits("1", "gwei");
+
+        // const myNFT: MyNFT = await hre.ethers.deployContract("MyNFT", [], {
+        //     gasPrice: gasPrice
+        // });
+        // await myNFT.waitForDeployment();
+
         const myNft: MyNFT = await hre.ethers.deployContract("MyNFT");
         await myNft.waitForDeployment();
 
@@ -36,7 +42,6 @@ task(`deploy-destination-minter`, `Deploys MyNFT.sol and DestinationMinter.sol s
         const destinationMinter: DestinationMinter = await hre.ethers.deployContract("DestinationMinter", [routerAddress, myNft.getAddress()]);
         await destinationMinter.waitForDeployment();
 
-
         spinner.stop();
         console.log(`✅ DestinationMinter contract deployed at address ${destinationMinter.target} on the ${hre.network.name} blockchain`);
 
@@ -47,5 +52,5 @@ task(`deploy-destination-minter`, `Deploys MyNFT.sol and DestinationMinter.sol s
         await tx.wait();
 
         spinner.stop();
-        console.log(`✅ DestinationMinter can now mint MyNFTs. Transaction hash: ${tx.hash}`);
+        console.log(`✅ DestinationMinter can now mint MyNFT. Transaction hash: ${tx.hash}`);
     })

@@ -25,13 +25,13 @@ export const LINK_ADDRESSES: AddressMap = {
     [`polygonAmoy`]: `0x0Fd9e8d3aF1aaee056EB9e802c3A762a667b1904`,
     [`optimismSepolia`]: `0xE4aB69C077896252FAFBD49EFD26B5D171A32410`,
     [`arbitrumSepolia`]: `0xb1D4538B4571d411F07960EF2838Ce337FE1E80E`,
-    [`avalancheFuji`]: `0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846`,
+    // [`avalancheFuji`]: `0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846`,
     [`bnbChainTestnet`]: `0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06`,
     [`baseSepolia`]: `0xE4aB69C077896252FAFBD49EFD26B5D171A32410`,
-    [`kromaSepolia`]: `0xa75cCA5b404ec6F4BB6EC4853D177FE7057085c8`,
-    [`wemixTestnet`]: `0x3580c7A817cCD41f7e02143BFa411D4EeAE78093`,
-    [`gnosisChiado`]: `0xDCA67FD8324990792C0bfaE95903B8A64097754F`,
-    [`celoAlfajores`]: `0x32E08557B14FaD8908025619797221281D439071`
+    // [`kromaSepolia`]: `0xa75cCA5b404ec6F4BB6EC4853D177FE7057085c8`,
+    // [`wemixTestnet`]: `0x3580c7A817cCD41f7e02143BFa411D4EeAE78093`,
+    // [`gnosisChiado`]: `0xDCA67FD8324990792C0bfaE95903B8A64097754F`,
+    // [`celoAlfajores`]: `0x32E08557B14FaD8908025619797221281D439071`
 };
 
 export const routerConfig = {
@@ -50,11 +50,11 @@ export const routerConfig = {
         chainSelector: `5224473277236331295`,
         feeTokens: [LINK_ADDRESSES[`optimismSepolia`], `0x4200000000000000000000000000000000000006`]
     },
-    avalancheFuji: {
-        address: `0xF694E193200268f9a4868e4Aa017A0118C9a8177`,
-        chainSelector: `14767482510784806043`,
-        feeTokens: [LINK_ADDRESSES[`avalancheFuji`], `0xd00ae08403B9bbb9124bB305C09058E32C39A48c`]
-    },
+    // avalancheFuji: {
+    //     address: `0xF694E193200268f9a4868e4Aa017A0118C9a8177`,
+    //     chainSelector: `14767482510784806043`,
+    //     feeTokens: [LINK_ADDRESSES[`avalancheFuji`], `0xd00ae08403B9bbb9124bB305C09058E32C39A48c`]
+    // },
     arbitrumSepolia: {
         address: `0x2a9C5afB0d0e4BAb2BCdaE109EC4b0c4Be15a165`,
         chainSelector: `3478487238524512106`,
@@ -70,24 +70,24 @@ export const routerConfig = {
         chainSelector: `10344971235874465080`,
         feeTokens: [LINK_ADDRESSES[`baseSepolia`], `0x4200000000000000000000000000000000000006`]
     },
-    kromaSepolia: {
-        address: `0xA8C0c11bf64AF62CDCA6f93D3769B88BdD7cb93D`,
-        chainSelector: `5990477251245693094`,
-        feeTokens: [LINK_ADDRESSES[`kromaSepolia`], `0x4200000000000000000000000000000000000001`]
-    },
-    wemixTestnet: {
-        address: `0xA8C0c11bf64AF62CDCA6f93D3769B88BdD7cb93D`,
-        chainSelector: `9284632837123596123`,
-        feeTokens: [LINK_ADDRESSES[`wemixTestnet`], `0xbE3686643c05f00eC46e73da594c78098F7a9Ae7`]
-    },
-    gnosisChiado: {
-        address: `0x19b1bac554111517831ACadc0FD119D23Bb14391`,
-        chainSelector: `8871595565390010547`,
-        feeTokens: [LINK_ADDRESSES[`gnosisChiado`], `0x18c8a7ec7897177E4529065a7E7B0878358B3BfF`]
-    },
-    celoAlfajores: {
-        address: `0xb00E95b773528E2Ea724DB06B75113F239D15Dca`,
-        chainSelector: `3552045678561919002`,
-        feeTokens: [LINK_ADDRESSES[`celoAlfajores`], `0x99604d0e2EfE7ABFb58BdE565b5330Bb46Ab3Dca`]
-    }
+    // kromaSepolia: {
+    //     address: `0xA8C0c11bf64AF62CDCA6f93D3769B88BdD7cb93D`,
+    //     chainSelector: `5990477251245693094`,
+    //     feeTokens: [LINK_ADDRESSES[`kromaSepolia`], `0x4200000000000000000000000000000000000001`]
+    // },
+    // wemixTestnet: {
+    //     address: `0xA8C0c11bf64AF62CDCA6f93D3769B88BdD7cb93D`,
+    //     chainSelector: `9284632837123596123`,
+    //     feeTokens: [LINK_ADDRESSES[`wemixTestnet`], `0xbE3686643c05f00eC46e73da594c78098F7a9Ae7`]
+    // },
+    // gnosisChiado: {
+    //     address: `0x19b1bac554111517831ACadc0FD119D23Bb14391`,
+    //     chainSelector: `8871595565390010547`,
+    //     feeTokens: [LINK_ADDRESSES[`gnosisChiado`], `0x18c8a7ec7897177E4529065a7E7B0878358B3BfF`]
+    // },
+    // celoAlfajores: {
+    //     address: `0xb00E95b773528E2Ea724DB06B75113F239D15Dca`,
+    //     chainSelector: `3552045678561919002`,
+    //     feeTokens: [LINK_ADDRESSES[`celoAlfajores`], `0x99604d0e2EfE7ABFb58BdE565b5330Bb46Ab3Dca`]
+    // }
 }

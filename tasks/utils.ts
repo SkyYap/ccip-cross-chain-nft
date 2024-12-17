@@ -71,20 +71,20 @@ export const getRouterConfig = (network: string) => {
             return routerConfig.optimismSepolia;
         case "arbitrumSepolia":
             return routerConfig.arbitrumSepolia;
-        case "avalancheFuji":
-            return routerConfig.avalancheFuji;
+        // case "avalancheFuji":
+        //     return routerConfig.avalancheFuji;
         case "bnbChainTestnet":
             return routerConfig.bnbChainTestnet;
         case "baseSepolia":
             return routerConfig.baseSepolia;
-        case "kromaSepolia":
-            return routerConfig.kromaSepolia;
-        case "wemixTestnet":
-            return routerConfig.wemixTestnet;
-        case "gnosisChiado":
-            return routerConfig.gnosisChiado;
-        case "celoAlfajores":
-            return routerConfig.celoAlfajores;
+        // case "kromaSepolia":
+        //     return routerConfig.kromaSepolia;
+        // case "wemixTestnet":
+        //     return routerConfig.wemixTestnet;
+        // case "gnosisChiado":
+        //     return routerConfig.gnosisChiado;
+        // case "celoAlfajores":
+        //     return routerConfig.celoAlfajores;
         default:
             throw new Error("Unknown network: " + network);
     }
